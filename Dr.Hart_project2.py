@@ -40,12 +40,15 @@ N_analytic[0] = analytic_value(0, tau)
 
 for i, t in enumerate(time_range[1:]):
     N[i + 1] = euler(N[i], tau, dt)
-    N_analytic[i] = analytic_value(t, tau)
+    N_analytic[i + 1] = analytic_value(t, tau)
     print(N[i + 1])
 
-    # approximation is blue
+# approximation is blue
+
+difference = np.absolute(np.divide(np.subtract(N_analytic, N), N)) * N_0
 plt.plot(time_range, N)
 plt.plot(time_range, N_analytic)
+plt.plot(time_range, difference, 'r--')
 plt.xlabel('Time')
 plt.ylabel('Uranium Nuclei Present')
 plt.title('Radio Active Decay for Uranium')
@@ -56,7 +59,3 @@ plt.show()  # print(function_x)
 end_time = lambda:int(round(time.time()*1000))
 run_time = end_time -  current_time
 print(run_time)"""
-
-# difference = N_analytic - N
-# plt.plot(time_range, difference)
-# plt.show()
