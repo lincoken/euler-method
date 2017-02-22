@@ -21,8 +21,9 @@ def euler(N_t, halflife, delta_t):
 def analytic_value(time, halflife):
     return np.exp((-1 / halflife) * time) * N_0
 
+
 def percent_error(actual, aprox):
-    return np.absolute(actual[len(actual)/2] - aprox[len(aprox)/2]) / (actual[len(actual)/2])
+    return np.absolute(actual[len(actual) / 2] - aprox[len(aprox) / 2]) / (actual[len(actual) / 2])
 
 
 run = 0
@@ -33,7 +34,7 @@ for dt in delta_t:
     N = np.array(np.zeros(len(time_range)))
     difference = np.array(np.zeros(len(time_range)))
 
-    #print(len(time_range))
+    # print(len(time_range))
 
     N[0] = N_0
 
@@ -48,7 +49,7 @@ for dt in delta_t:
         N_analytic[i + 1] = analytic_value(t, tau)
         print(N[i + 1])
 
-   # difference[run] = np.absolute(np.divide(np.subtract(N_analytic, N), N_analytic))
+        # difference[run] = np.absolute(np.divide(np.subtract(N_analytic, N), N_analytic))
     error = percent_error(N_analytic, N)
     plt.plot(dt, error, 'ro')
     run = run + 1
@@ -58,10 +59,10 @@ for dt in delta_t:
 plt.plot(time_range, N)
 plt.plot(time_range, N_analytic)
 """
-#plt.plot(time_range, difference[run])
+# plt.plot(time_range, difference[run])
 
-plt.xlabel('Time')
-plt.ylabel('Uranium Nuclei Present')
+plt.xlabel('delta t')
+plt.ylabel('percent error in Uranium Nuclei Present euler approx.')
 plt.title('Radio Active Decay for Uranium')
 # print(range_2)
 
