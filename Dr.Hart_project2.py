@@ -47,11 +47,13 @@ for dt in delta_t:
     for i, t in enumerate(time_range[1:]):
         N[i + 1] = euler(N[i], tau, dt)
         N_analytic[i + 1] = analytic_value(t, tau)
-        print(N[i + 1])
+        #print(N[i + 1])
 
         # difference[run] = np.absolute(np.divide(np.subtract(N_analytic, N), N_analytic))
     error = percent_error(N_analytic, N)
     plt.plot(dt, error, 'ro')
+    #plt.yscale('log')
+    plt.xscale('log')
     run = run + 1
 
 # approximation is blue
